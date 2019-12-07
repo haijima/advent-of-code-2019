@@ -41,3 +41,31 @@ func Test_runIntCodeProgram(t *testing.T) {
 		})
 	}
 }
+
+func Test_findNounAndVerb(t *testing.T) {
+	type args struct {
+		ints   []int
+		output int
+	}
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		{
+			name: "Example 1",
+			args: args{
+				ints:   readFile("./input.txt"),
+				output: 3085697,
+			},
+			want: 1202,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := findNounAndVerb(tt.args.ints, tt.args.output); got != tt.want {
+				t.Errorf("findNounAndVerb() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
